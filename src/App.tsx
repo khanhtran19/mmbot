@@ -6,8 +6,9 @@ import SuiSwapCetus from "./SuiSwapCetus";
 import MultiSend from "./MultiSend";
 import PumpFunBuy from "./PumpFunBuy";
 import FourMemeBuy from "./FourMemeBuy";
+import WalletViewer from "./WalletViewer";
 
-type TabKey = "sol" | "bsc" | "sui" | "multi" | "formeme" | "pump";
+type TabKey = "sol" | "bsc" | "sui" | "multi" | "formeme" | "pump" | "wallet";
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabKey>("sol");
@@ -23,6 +24,7 @@ function App() {
     }
     if (activeTab === "sui") return <SuiSwapCetus />;
     if (activeTab === "multi") return <MultiSend />;
+    if (activeTab === "wallet") return <WalletViewer />;
   };
 
   return (
@@ -59,6 +61,12 @@ function App() {
             className={`flex-1 py-3 text-center font-medium ${activeTab === "multi" ? "bg-white text-green-900" : "bg-green-800/30 text-white hover:bg-green-800/50"}`}
           >
             Multi Send
+          </button>
+          <button
+            onClick={() => setActiveTab("wallet")}
+            className={`flex-1 py-3 text-center font-medium ${activeTab === "wallet" ? "bg-white text-green-900" : "bg-green-800/30 text-white hover:bg-green-800/50"}`}
+          >
+            Wallet Viewer
           </button>
           <button
             onClick={() => setActiveTab("pump")}
