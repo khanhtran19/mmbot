@@ -6,13 +6,32 @@ import SuiSwapCetus from "./SuiSwapCetus";
 import MultiSend from "./MultiSend";
 import PumpFunBuy from "./PumpFunBuy";
 import FourMemeBuy from "./FourMemeBuy";
+import SolanaWalletFactory from "./SolanaWalletFactory";
 import WalletViewer from "./WalletViewer";
 
-type TabKey = "sol" | "bsc" | "sui" | "multi" | "formeme" | "pump" | "wallet";
+type TabKey = "sol" | "bsc" | "sui" | "multi" | "formeme" | "pump" | "createwallet" | "wallet";
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabKey>("sol");
   const renderSwap = () => {
+    switch (activeTab) {
+      case "sol":
+        return <SolSwap />;
+      case "bsc":
+        return <BscSwap />;
+      case "formeme":
+        return <FourMemeBuy />;
+      case "pump":
+        return <PumpFunBuy />;
+      case "sui":
+        return <SuiSwapCetus />;
+      case "multi":
+        return <MultiSend />;
+      case "createwallet":
+        return <SolanaWalletFactory />;
+      default:
+        return null;
+    }
     if (activeTab === "sol") {
       return <SolSwap />;
     } else if (activeTab === "bsc") {
@@ -73,6 +92,12 @@ function App() {
             className={`flex-1 py-3 text-center font-medium ${activeTab === "pump" ? "bg-white text-purple-700" : "bg-green-800/30 text-white hover:bg-green-800/50"}`}
           >
             Pump.fun Buy
+          </button>
+          <button
+            onClick={() => setActiveTab("createwallet")}
+            className={`flex-1 py-3 text-center font-medium ${activeTab === "createwallet" ? "bg-white text-purple-700" : "bg-green-800/30 text-white hover:bg-green-800/50"}`}
+          >
+            Create Wallet
           </button>
         </div>
 
