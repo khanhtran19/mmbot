@@ -29,21 +29,11 @@ function App() {
         return <MultiSend />;
       case "createwallet":
         return <SolanaWalletFactory />;
+      case "wallet":
+        return <WalletViewer />;
       default:
         return null;
     }
-    if (activeTab === "sol") {
-      return <SolSwap />;
-    } else if (activeTab === "bsc") {
-      return <BscSwap />;
-    } else if (activeTab === "formeme") {
-      return <FourMemeBuy />;
-    } else if (activeTab === "pump") {
-      return <PumpFunBuy />;
-    }
-    if (activeTab === "sui") return <SuiSwapCetus />;
-    if (activeTab === "multi") return <MultiSend />;
-    if (activeTab === "wallet") return <WalletViewer />;
   };
 
   return (
